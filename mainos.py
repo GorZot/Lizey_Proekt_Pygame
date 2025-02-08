@@ -28,6 +28,14 @@ def print_text(message, x, y, font_color=(99, 219, 215), font_type='FlaviusUnive
     text = font_type.render(message, True, font_color)
     screen.blit(text, (x, y))
 
+
+def helth_check(enemy, health_en):
+    global count, score
+    if health_en <= 0:
+        score += 1000
+        enemy.kill()
+
+
 def start_game():
     global score, count
     pygame.mixer.music.play(loops=-1)
@@ -56,91 +64,61 @@ def start_game():
             if pygame.sprite.collide_rect(i, vrag):
                 health -= 1
                 break
-            if health <= 0:
-                score += 1000
-                vrag.kill()
-                break
+            helth_check(vrag, health)
 
         for i in bullet_group:
             if pygame.sprite.collide_rect(i, vrag2):
                 health2 -= 1
                 break
-            if health2 <= 0:
-                score += 1000
-                vrag2.kill()
-                break
+            helth_check(vrag2, health2)
 
         for i in bullet_group:
             if pygame.sprite.collide_rect(i, vrag3):
                 health3 -= 1
                 break
-            if health3 <= 0:
-                score += 1000
-                vrag3.kill()
-                break
+            helth_check(vrag3, health3)
 
         for i in bullet_group:
             if pygame.sprite.collide_rect(i, vrag4):
                 health4 -= 1
                 break
-            if health4 <= 0:
-                score += 1000
-                vrag4.kill()
-                break
+            helth_check(vrag4, health4)
 
         for i in bullet_group:
             if pygame.sprite.collide_rect(i, vrag5):
                 health5 -= 1
                 break
-            if health5 <= 0:
-                score += 1000
-                vrag5.kill()
-                break
+            helth_check(vrag5, health5)
 
         for i in bullet_group:
             if pygame.sprite.collide_rect(i, vrag6):
                 health6 -= 1
                 break
-            if health6 <= 0:
-                score += 1000
-                vrag6.kill()
-                break
+            helth_check(vrag6, health6)
 
         for i in bullet_group:
             if pygame.sprite.collide_rect(i, vrag7):
                 health7 -= 1
                 break
-            if health7 <= 0:
-                score += 1000
-                vrag7.kill()
-                break
+            helth_check(vrag7, health7)
 
         for i in bullet_group:
             if pygame.sprite.collide_rect(i, vrag8):
                 health8 -= 1
                 break
-            if health8 <= 0:
-                score += 1000
-                vrag8.kill()
-                break
+            helth_check(vrag8, health8)
 
         for i in bullet_group:
             if pygame.sprite.collide_rect(i, vrag9):
                 health9 -= 1
                 break
-            if health9 <= 0:
-                score += 1000
-                vrag9.kill()
-                break
+            helth_check(vrag9, health9)
 
         for i in bullet_group:
             if pygame.sprite.collide_rect(i, vrag10):
                 health10 -= 1
                 break
-            if health10 <= 0:
-                score += 1000
-                vrag10.kill()
-                break
+            helth_check(vrag10, health10)
 
         camera.custom_draw()
         all_sprites_group.update()
@@ -403,6 +381,7 @@ def game_over():
 
         pygame.display.update()
         clock.tick(15)
+    print(score)
 
 
 def menu():
