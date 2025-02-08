@@ -43,16 +43,18 @@ def pobeda():
     pygame.mixer.music.load('sounds/nach.mp3')
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(loops=-1)
+    menu_back = pygame.image.load('images/bg2.png')
     global score
     gg = True
     while gg:
+        screen.blit(menu_back, (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-        print_text('              ПОЗДРАВЛЯЕМ! ВЫ СПРАВИЛИСЬ С ПОСТАВЛЕННОЙ ЗАДАЧЕЙ!', 70, 270)
+        print_text('             ПОЗДРАВЛЯЕМ! ВЫ СПРАВИЛИСЬ С ПОСТАВЛЕННОЙ ЗАДАЧЕЙ!', 70, 270)
         print_text('         Вы очистили данные территории от Опустошителей. Нажми Esc чтобы выйти', 70, 310)
-        print_text(f'                                                        Вы набрали {score} очков', 140, 350)
+        print_text(f'                                                      Вы набрали {score} очков', 140, 350)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
@@ -309,7 +311,7 @@ class Bullet(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, position, file):
         super().__init__(enemy_group, all_sprites_group)
-        self.image = pygame.image.load(f"images/{file}").convert_alpha()
+        self.image = pygame.image.load(f"images/images_enemy/{file}").convert_alpha()
         self.image = pygame.transform.rotozoom(self.image, 0, 2)
 
         self.rect = self.image.get_rect()
@@ -476,15 +478,15 @@ def menu():
 
 
 vrag = Enemy((1000, 1000), 'enemy.png')
-vrag2 = Enemy((600, 1200), 'enemy.png')
-vrag3 = Enemy((900, 1000), 'enemy.png')
-vrag4 = Enemy((1100, 1000), 'enemy.png')
-vrag5 = Enemy((800, 1500), 'enemy.png')
-vrag6 = Enemy((1000, 1100), 'enemy.png')
-vrag7 = Enemy((300, 1500), 'enemy.png')
-vrag8 = Enemy((400, 1100), 'enemy.png')
-vrag9 = Enemy((100, 1900), 'enemy.png')
-vrag10 = Enemy((700, 1300), 'enemy.png')
+vrag2 = Enemy((600, 1200), 'enemy2.png')
+vrag3 = Enemy((900, 1000), 'enemy3.png')
+vrag4 = Enemy((1100, 1000), 'enemy4.png')
+vrag5 = Enemy((800, 1500), 'enemy5.png')
+vrag6 = Enemy((1000, 1100), 'enemy6.png')
+vrag7 = Enemy((300, 1500), 'enemy7.png')
+vrag8 = Enemy((400, 1100), 'enemy8.png')
+vrag9 = Enemy((100, 1900), 'enemy9.png')
+vrag10 = Enemy((700, 1300), 'enemy10.png')
 
 
 
