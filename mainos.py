@@ -2,6 +2,7 @@ import pygame
 from sys import exit
 import math
 from settings import *
+import time
 
 pygame.init()
 
@@ -18,6 +19,7 @@ count = 10
 
 background = pygame.image.load("images/bg2.png").convert()
 WIDTH_BG, HEIGHT_BG = background.get_rect().size
+start = time.time()
 
 
 def print_text(message, x, y, font_color=(99, 219, 215), font_type='FlaviusUniversal.ttf', font_size=30):
@@ -40,11 +42,13 @@ def dead(enemy):
 
 
 def pobeda():
+    finish = time.time()
     pygame.mixer.music.load('sounds/nach.mp3')
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(loops=-1)
     menu_back = pygame.image.load('images/bg2.png')
-    global score
+    global score, start
+    final_score = score - int((finish - start) * 50)
     gg = True
     while gg:
         screen.blit(menu_back, (0, 0))
@@ -54,7 +58,7 @@ def pobeda():
                 exit()
         print_text('             ПОЗДРАВЛЯЕМ! ВЫ СПРАВИЛИСЬ С ПОСТАВЛЕННОЙ ЗАДАЧЕЙ!', 70, 270)
         print_text('         Вы очистили данные территории от Опустошителей. Нажми Esc чтобы выйти', 70, 310)
-        print_text(f'                                                      Вы набрали {score} очков', 140, 350)
+        print_text(f'                                                      Вы набрали {final_score} очков', 140, 350)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
@@ -63,7 +67,6 @@ def pobeda():
 
         pygame.display.update()
         clock.tick(15)
-    print(score)
 
 def start_game():
     pygame.mixer.music.load('sounds/fonovay.mp3')
@@ -357,7 +360,6 @@ class Camera(pygame.sprite.Group):
         self.offset.x = player.rect.centerx - WIDTH // 2
         self.offset.y = player.rect.centery - HEIGHT // 2
 
-        # draw the floor
         floor_offset_pos = self.floor_rect.topleft - self.offset
         screen.blit(background, floor_offset_pos)
 
@@ -404,10 +406,12 @@ all_sprites_group.add(player)
 
 
 def game_over():
+    finish = time.time()
     pygame.mixer.music.load('sounds/nach.mp3')
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(loops=-1)
-    global score
+    global score, start
+    final_score = score - int((finish - start) * 50)
     gg = True
     while gg:
         for event in pygame.event.get():
@@ -415,6 +419,7 @@ def game_over():
                 pygame.quit()
                 exit()
         print_text('                                     Связь потеряна... Нажми Esc чтобы сдаться', 100, 260)
+        print_text(f'                                                      Вы набрали {final_score} очков', 140, 350)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE]:
@@ -425,7 +430,6 @@ def game_over():
 
         pygame.display.update()
         clock.tick(15)
-    print(score)
 
 
 def menu():

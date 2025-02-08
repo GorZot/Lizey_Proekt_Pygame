@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4f85a53-01b9-4f2b-94e1-0d91985e654f" name="Changes" comment="второй">
+    <list default="true" id="f4f85a53-01b9-4f2b-94e1-0d91985e654f" name="Changes" comment="Теперь оно играбельно хоть сколько то">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainos.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainos.py" afterDir="false" />
     </list>
@@ -36,10 +36,14 @@
     "Python.mainos.executor": "Run",
     "Python.settings.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/sotskovegor/PycharmProjects/git_proekt1/Lizey_Proekt_Pygame/images/images_enemy"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sotskovegor\PycharmProjects\git_proekt1\Lizey_Proekt_Pygame\images\images_enemy" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sotskovegor\PycharmProjects\git_proekt1\Lizey_Proekt_Pygame" />
     </key>
@@ -101,7 +105,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739036620149</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="добавил человеческий подсчет монстров и победу в игре">
+      <option name="closed" value="true" />
+      <created>1739039512079</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739039512079</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Теперь оно играбельно хоть сколько то">
+      <option name="closed" value="true" />
+      <created>1739040894074</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1739040894074</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,6 +165,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="первый сохран" />
     <MESSAGE value="второй" />
-    <option name="LAST_COMMIT_MESSAGE" value="второй" />
+    <MESSAGE value="добавил человеческий подсчет монстров и победу в игре" />
+    <MESSAGE value="Теперь оно играбельно хоть сколько то" />
+    <option name="LAST_COMMIT_MESSAGE" value="Теперь оно играбельно хоть сколько то" />
   </component>
 </project>
