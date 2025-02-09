@@ -3,6 +3,10 @@ from sys import exit
 import math
 from settings import *
 import time
+import sqlite3
+from PyQt6 import uic
+from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QFileDialog
+from PyQt6 import QtGui
 
 pygame.init()
 
@@ -43,9 +47,6 @@ def dead(enemy):
 
 def pobeda():
     finish = time.time()
-    pygame.mixer.music.load('sounds/nach.mp3')
-    pygame.mixer.music.set_volume(0.4)
-    pygame.mixer.music.play(loops=-1)
     menu_back = pygame.image.load('images/bg2.png')
     global score, start
     final_score = score - int((finish - start) * 50)
@@ -57,13 +58,13 @@ def pobeda():
                 pygame.quit()
                 exit()
         print_text('             ПОЗДРАВЛЯЕМ! ВЫ СПРАВИЛИСЬ С ПОСТАВЛЕННОЙ ЗАДАЧЕЙ!', 70, 270)
-        print_text('         Вы очистили данные территории от Опустошителей. Нажми Esc чтобы выйти', 70, 310)
+        print_text('   Вы очистили данные территории от Опустошителей. Нажми Esc чтобы сохранить свой результат и выйти', 70, 310)
         print_text(f'                                                      Вы набрали {final_score} очков', 140, 350)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
-            pygame.quit()
-            quit()
+            w4 = Save()
+            w4.show()
 
         pygame.display.update()
         clock.tick(15)
@@ -407,6 +408,7 @@ all_sprites_group.add(player)
 
 def game_over():
     finish = time.time()
+    menu_back = pygame.image.load('images/bg2.png')
     pygame.mixer.music.load('sounds/nach.mp3')
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(loops=-1)
@@ -414,6 +416,7 @@ def game_over():
     final_score = score - int((finish - start) * 50)
     gg = True
     while gg:
+        screen.blit(menu_back, (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -422,8 +425,6 @@ def game_over():
         print_text(f'                                                      Вы набрали {final_score} очков', 140, 350)
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_SPACE]:
-            pass
         if keys[pygame.K_ESCAPE]:
             pygame.quit()
             quit()
@@ -492,6 +493,31 @@ vrag8 = Enemy((400, 1100), 'enemy8.png')
 vrag9 = Enemy((100, 1900), 'enemy9.png')
 vrag10 = Enemy((700, 1300), 'enemy10.png')
 
+class Save(QWidget):
+    def __init__(self):
+        global final_score
+        super().__init__()
+        uic.loadUi('username.ui', self)
+        title = ''
+        self.setWindowTitle(title)
+        name = self.Pole.toPlainText()
+        con = sqlite3.connect('abstract.db')
+        cursor = con.cursor()
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS Users (
+        NAME TEXT,
+        SCORE INTEGER
+        )
+        ''')
+        cursor.execute('INSERT INTO Users (NAME, SCORE) VALUES (?, ?)', (name, final_score))
+        con.commit()
+        con.close()
+        self.But.clicked.connect(self.F_exit)
+
+    def F_exit(self):
+        self.hide()
+        pygame.quit()
+        quit()
 
 
 menu()
