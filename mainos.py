@@ -49,7 +49,7 @@ def pobeda():
     menu_back = pygame.image.load('images/bg2.png')
     current_date = datetime.now()
     formatted_date = current_date.strftime('%d %m %Y')
-    global score, start
+    global score, start, player_health
     final_score = score - int((finish - start) * 50)
     gg = True
     while gg:
@@ -59,16 +59,15 @@ def pobeda():
                 pygame.quit()
                 exit()
         print_text('             ПОЗДРАВЛЯЕМ! ВЫ СПРАВИЛИСЬ С ПОСТАВЛЕННОЙ ЗАДАЧЕЙ!', 70, 270)
-        print_text('   Вы очистили данные территории от Опустошителей. Нажми Esc чтобы сохранить свой результат и выйти', 70, 310)
-        print_text(f'                                                      Вы набрали {final_score} очков', 140, 350)
+        print_text('                              Вы очистили данные территории от Опустошителей!', 70, 310)
+        print_text('                            Нажми Esc чтобы сохранить свой результат и выйти', 70, 350)
+        print_text(f'                                                    Вы набрали {final_score} очков', 140, 390)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
             con = sqlite3.connect('abstract.db')
             c = con.cursor()
             c.execute('INSERT INTO Users (name, score) VALUES (?, ?)', (formatted_date, final_score))
-
-            c.execute("SELECT * FROM Users")
             con.commit()
             con.close()
             pygame.quit()
@@ -94,7 +93,6 @@ def start_game():
     health10 = 160
 
     while True:
-        keys = pygame.key.get_pressed()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -175,8 +173,6 @@ def start_game():
 
         camera.custom_draw()
         all_sprites_group.update()
-        # pygame.draw.rect(screen, "red", player.hitbox_rect, width=2)
-        # pygame.draw.rect(screen, "yellow", player.rect, width=2)
 
         pygame.display.update()
         clock.tick(FPS)
@@ -430,8 +426,8 @@ def game_over():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-        print_text('                                     Связь потеряна... Нажми Esc чтобы сдаться', 100, 260)
-        print_text(f'                                                      Вы набрали {final_score} очков', 140, 350)
+        print_text('      Связь потеряна... Нажми Esc чтобы чтобы сохранить свой результат и сдаться', 100, 260)
+        print_text(f'                                                       Вы набрали {final_score} очков', 140, 300)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
