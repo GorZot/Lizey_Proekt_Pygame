@@ -4,9 +4,7 @@ import math
 from settings import *
 import time
 import sqlite3
-from PyQt6 import uic
-from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QFileDialog
-from PyQt6 import QtGui
+from datetime import datetime
 
 
 pygame.init()
@@ -49,6 +47,8 @@ def dead(enemy):
 def pobeda():
     finish = time.time()
     menu_back = pygame.image.load('images/bg2.png')
+    current_date = datetime.now()
+    formatted_date = current_date.strftime('%d %m %Y')
     global score, start
     final_score = score - int((finish - start) * 50)
     gg = True
@@ -64,10 +64,9 @@ def pobeda():
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
-            name = 'GorZot'
             con = sqlite3.connect('abstract.db')
             c = con.cursor()
-            c.execute('INSERT INTO Users (name, score) VALUES (?, ?)', (name, final_score))
+            c.execute('INSERT INTO Users (name, score) VALUES (?, ?)', (formatted_date, final_score))
 
             c.execute("SELECT * FROM Users")
             con.commit()
@@ -276,7 +275,6 @@ class Player(pygame.sprite.Sprite):
                     self.damage_cooldown = DAMAGE_COOLDOWN
                     self.player_health -= 1
                     damage_igrok_sound.play()
-                    print(self.player_health)
                     break
         if self.player_health == 0:
             self.died()
@@ -421,6 +419,8 @@ def game_over():
     pygame.mixer.music.load('sounds/nach.mp3')
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(loops=-1)
+    current_date = datetime.now()
+    formatted_date = current_date.strftime('%d %m %Y')
     global score, start
     final_score = score - int((finish - start) * 50)
     gg = True
@@ -435,18 +435,13 @@ def game_over():
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_ESCAPE]:
-                name = 'GorZot'
-                con = sqlite3.connect('abstract.db')
-                c = con.cursor()
-                c.execute('INSERT INTO Users (name, score) VALUES (?, ?)', (name, final_score))
-
-                c.execute("SELECT * FROM Users")
-                con.commit()
-                con.close()
-                pygame.quit()
-                quit()
+            con = sqlite3.connect('abstract.db')
+            c = con.cursor()
+            c.execute('INSERT INTO Users (name, score) VALUES (?, ?)', (formatted_date, final_score))
+            con.commit()
+            con.close()
+            pygame.quit()
+            quit()
 
         pygame.display.update()
         clock.tick(15)
