@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4f85a53-01b9-4f2b-94e1-0d91985e654f" name="Changes" comment="Правильный подсчет очков">
-      <change afterPath="$PROJECT_DIR$/save_in_bd.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/username.ui" afterDir="false" />
+    <list default="true" id="f4f85a53-01b9-4f2b-94e1-0d91985e654f" name="Changes" comment="сохранение в бд">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainos.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainos.py" afterDir="false" />
     </list>
@@ -139,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739042613163</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="сохранение в бд">
+      <option name="closed" value="true" />
+      <created>1739084749680</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739084749680</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,6 +192,7 @@
     <MESSAGE value="добавил человеческий подсчет монстров и победу в игре" />
     <MESSAGE value="Теперь оно играбельно хоть сколько то" />
     <MESSAGE value="Правильный подсчет очков" />
-    <option name="LAST_COMMIT_MESSAGE" value="Правильный подсчет очков" />
+    <MESSAGE value="сохранение в бд" />
+    <option name="LAST_COMMIT_MESSAGE" value="сохранение в бд" />
   </component>
 </project>

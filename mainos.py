@@ -8,6 +8,7 @@ from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QFileDialog
 from PyQt6 import QtGui
 
+
 pygame.init()
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -63,8 +64,16 @@ def pobeda():
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
-            w4 = Save()
-            w4.show()
+            name = 'GorZot'
+            con = sqlite3.connect('abstract.db')
+            c = con.cursor()
+            c.execute('INSERT INTO Users (name, score) VALUES (?, ?)', (name, final_score))
+
+            c.execute("SELECT * FROM Users")
+            con.commit()
+            con.close()
+            pygame.quit()
+            quit()
 
         pygame.display.update()
         clock.tick(15)
@@ -426,8 +435,18 @@ def game_over():
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
-            pygame.quit()
-            quit()
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_ESCAPE]:
+                name = 'GorZot'
+                con = sqlite3.connect('abstract.db')
+                c = con.cursor()
+                c.execute('INSERT INTO Users (name, score) VALUES (?, ?)', (name, final_score))
+
+                c.execute("SELECT * FROM Users")
+                con.commit()
+                con.close()
+                pygame.quit()
+                quit()
 
         pygame.display.update()
         clock.tick(15)
@@ -492,32 +511,6 @@ vrag7 = Enemy((300, 1500), 'enemy7.png')
 vrag8 = Enemy((400, 1100), 'enemy8.png')
 vrag9 = Enemy((100, 1900), 'enemy9.png')
 vrag10 = Enemy((700, 1300), 'enemy10.png')
-
-class Save(QWidget):
-    def __init__(self):
-        global final_score
-        super().__init__()
-        uic.loadUi('username.ui', self)
-        title = ''
-        self.setWindowTitle(title)
-        name = self.Pole.toPlainText()
-        con = sqlite3.connect('abstract.db')
-        cursor = con.cursor()
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS Users (
-        NAME TEXT,
-        SCORE INTEGER
-        )
-        ''')
-        cursor.execute('INSERT INTO Users (NAME, SCORE) VALUES (?, ?)', (name, final_score))
-        con.commit()
-        con.close()
-        self.But.clicked.connect(self.F_exit)
-
-    def F_exit(self):
-        self.hide()
-        pygame.quit()
-        quit()
 
 
 menu()
