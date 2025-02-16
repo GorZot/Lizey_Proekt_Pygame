@@ -5,6 +5,7 @@ from settings import *
 import time
 import sqlite3
 from datetime import datetime
+import random
 
 
 pygame.init()
@@ -18,7 +19,8 @@ shoot_sound.set_volume(0.3)
 button_sound = pygame.mixer.Sound('sounds/button_sound.ogg')
 damage_igrok_sound = pygame.mixer.Sound('sounds/sound_damage_igrok.ogg')
 score = 0
-count = 10
+count = 0
+count1 = 0
 
 background = pygame.image.load("images/bg2.png").convert()
 WIDTH_BG, HEIGHT_BG = background.get_rect().size
@@ -29,19 +31,6 @@ def print_text(message, x, y, font_color=(99, 219, 215), font_type='FlaviusUnive
     font_type = pygame.font.Font(font_type, font_size)
     text = font_type.render(message, True, font_color)
     screen.blit(text, (x, y))
-
-
-def helth_check(enemy, health_en):
-    if health_en <= 0:
-        dead(enemy)
-    if count <= 0:
-        pobeda()
-
-def dead(enemy):
-    global count, score
-    enemy.kill()
-    score += 1000
-    count -= 1
 
 
 def pobeda():
@@ -58,10 +47,10 @@ def pobeda():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-        print_text('             ПОЗДРАВЛЯЕМ! ВЫ СПРАВИЛИСЬ С ПОСТАВЛЕННОЙ ЗАДАЧЕЙ!', 70, 270)
-        print_text('                              Вы очистили данные территории от Опустошителей!', 70, 310)
-        print_text('                            Нажми Esc чтобы сохранить свой результат и выйти', 70, 350)
-        print_text(f'                                                    Вы набрали {final_score} очков', 140, 390)
+        print_text('                                                                   Связь потеряна.........', 70, 270)
+        print_text(f'                              Но вы успешно очистили эти земли от {count} Опустошителей', 70, 310)
+        print_text(f'                                                       Вы набрали {final_score} очков', 140, 350)
+        print_text('                                Нажми Esc чтобы сохранить свой результат и выйти', 70, 390)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
@@ -80,17 +69,8 @@ def start_game():
     pygame.mixer.music.load('sounds/fonovay.mp3')
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(loops=-1)
-    global score, count
-    health = 100
-    health2 = 150
-    health3 = 120
-    health4 = 110
-    health5 = 130
-    health6 = 150
-    health7 = 130
-    health8 = 110
-    health9 = 130
-    health10 = 160
+
+    global count1
 
     while True:
         for event in pygame.event.get():
@@ -98,79 +78,18 @@ def start_game():
                 pygame.quit()
                 exit()
 
+        if count1 == 0:
+            count1 = 15
+            for i in range(1, 16):
+                x = random.randint(200, 2000)
+                y = random.randint(200, 2000)
+                pos = (x, y)
+                if i > 10:
+                    i -= 10
+                vrag = Enemy(pos, f'enemy{i}.png')
+
         screen.blit(background, (0, 0))
         screen.fill('black')
-
-        if health > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag):
-                    health -= 1
-                    helth_check(vrag, health)
-                    break
-
-        if health2 > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag2):
-                    health2 -= 1
-                    helth_check(vrag2, health2)
-                    break
-
-        if health3 > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag3):
-                    health3 -= 1
-                    helth_check(vrag3, health3)
-                    break
-
-        if health4 > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag4):
-                    health4 -= 1
-                    helth_check(vrag4, health4)
-                    break
-
-        if health5 > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag5):
-                    health5 -= 1
-                    helth_check(vrag5, health5)
-                    break
-
-        if health6 > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag6):
-                    health6 -= 1
-                    helth_check(vrag6, health6)
-                    break
-
-        if health7 > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag7):
-                    health7 -= 1
-                    helth_check(vrag7, health7)
-                    break
-
-        if health8 > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag8):
-                    health8 -= 1
-                    helth_check(vrag8, health8)
-                    break
-
-        if health9 > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag9):
-                    health9 -= 1
-                    helth_check(vrag9, health9)
-                    break
-
-        if health10 > 0:
-            for i in bullet_group:
-                if pygame.sprite.collide_rect(i, vrag10):
-                    health10 -= 1
-                    helth_check(vrag10, health10)
-                    break
-
         camera.custom_draw()
         all_sprites_group.update()
 
@@ -263,7 +182,7 @@ class Player(pygame.sprite.Sprite):
         self.move()
         self.player_rotation()
         print_text(f'Количество жизней: {self.player_health}%', 40, 20)
-        print_text(f'Врагов осталось: {count}', 40, 50)
+        print_text(f'Врагов убито: {count}', 40, 50)
 
         for i in enemy_group:
             if pygame.sprite.collide_rect(i, player):
@@ -282,7 +201,7 @@ class Player(pygame.sprite.Sprite):
             self.shoot_cooldown -= 1
 
     def died(self):
-        game_over()
+        pobeda()
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y, angle):
@@ -329,6 +248,8 @@ class Enemy(pygame.sprite.Sprite):
         self.speed = ENEMY_SPEED
         self.angle = 1
 
+        self.health = random.randint(90, 150)
+
         self.position = pygame.math.Vector2(position)
 
     def hunt_player(self):
@@ -351,7 +272,19 @@ class Enemy(pygame.sprite.Sprite):
         return (vector_1 - vector_2).magnitude()
 
     def update(self):
+        global score, count, count1
         self.hunt_player()
+
+        for i in bullet_group:
+            if self.rect.colliderect(i):
+                self.health -= 50
+                i.kill()
+                if self.health <= 0:
+                    self.kill()
+                    score += 1000
+                    count += 1
+                    count1 -= 1
+
 
 
 class Camera(pygame.sprite.Group):
@@ -409,40 +342,6 @@ player = Player()
 all_sprites_group.add(player)
 
 
-def game_over():
-    finish = time.time()
-    menu_back = pygame.image.load('images/bg2.png')
-    pygame.mixer.music.load('sounds/nach.mp3')
-    pygame.mixer.music.set_volume(0.4)
-    pygame.mixer.music.play(loops=-1)
-    current_date = datetime.now()
-    formatted_date = current_date.strftime('%d %m %Y')
-    global score, start
-    final_score = score - int((finish - start) * 50)
-    gg = True
-    while gg:
-        screen.blit(menu_back, (0, 0))
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-        print_text('      Связь потеряна... Нажми Esc чтобы чтобы сохранить свой результат и сдаться', 100, 260)
-        print_text(f'                                                       Вы набрали {final_score} очков', 140, 300)
-
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_ESCAPE]:
-            con = sqlite3.connect('abstract.db')
-            c = con.cursor()
-            c.execute('INSERT INTO Users (name, score) VALUES (?, ?)', (formatted_date, final_score))
-            con.commit()
-            con.close()
-            pygame.quit()
-            quit()
-
-        pygame.display.update()
-        clock.tick(15)
-
-
 def menu():
     pygame.mixer.music.load('sounds/nach.mp3')
     pygame.mixer.music.set_volume(0.4)
@@ -490,18 +389,6 @@ def menu():
         quit_btn.draw(400, 350, 'ВЫЙТИ', quit, 50)
         pygame.display.update()
         clock.tick(60)
-
-
-vrag = Enemy((1000, 1000), 'enemy.png')
-vrag2 = Enemy((600, 1200), 'enemy2.png')
-vrag3 = Enemy((900, 1000), 'enemy3.png')
-vrag4 = Enemy((1100, 1000), 'enemy4.png')
-vrag5 = Enemy((800, 1500), 'enemy5.png')
-vrag6 = Enemy((1000, 1100), 'enemy6.png')
-vrag7 = Enemy((300, 1500), 'enemy7.png')
-vrag8 = Enemy((400, 1100), 'enemy8.png')
-vrag9 = Enemy((100, 1900), 'enemy9.png')
-vrag10 = Enemy((700, 1300), 'enemy10.png')
 
 
 menu()
