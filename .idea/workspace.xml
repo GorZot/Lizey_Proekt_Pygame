@@ -4,22 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4f85a53-01b9-4f2b-94e1-0d91985e654f" name="Changes" comment="Итоговый коммит">
-      <change afterPath="$PROJECT_DIR$/images/images_enemy/enemy1.png" afterDir="false" />
+    <list default="true" id="f4f85a53-01b9-4f2b-94e1-0d91985e654f" name="Changes" comment="Итоговый коммит(переработано в более менее играбельный вид)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/abstract.db" beforeDir="false" afterPath="$PROJECT_DIR$/abstract.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/bullet.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/bullet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/gg.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/gg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy10.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/images_enemy/enemy10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/images_enemy/enemy2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy3.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/images_enemy/enemy3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy4.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/images_enemy/enemy4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy5.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/images_enemy/enemy5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy6.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/images_enemy/enemy6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy7.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/images_enemy/enemy7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy8.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/images_enemy/enemy8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/images_enemy/enemy9.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/images_enemy/enemy9.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainos.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
@@ -214,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739100097457</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Итоговый коммит(переработано в более менее играбельный вид)">
+      <option name="closed" value="true" />
+      <created>1739744141803</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1739744141803</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -264,6 +259,7 @@
     <MESSAGE value="сохранение в бд" />
     <MESSAGE value="рабочее сохранение в бд" />
     <MESSAGE value="Итоговый коммит" />
-    <option name="LAST_COMMIT_MESSAGE" value="Итоговый коммит" />
+    <MESSAGE value="Итоговый коммит(переработано в более менее играбельный вид)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Итоговый коммит(переработано в более менее играбельный вид)" />
   </component>
 </project>

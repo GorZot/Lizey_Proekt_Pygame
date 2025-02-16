@@ -21,6 +21,7 @@ damage_igrok_sound = pygame.mixer.Sound('sounds/sound_damage_igrok.ogg')
 score = 0
 count = 0
 count1 = 0
+wave = 0
 
 background = pygame.image.load("images/bg2.png").convert()
 WIDTH_BG, HEIGHT_BG = background.get_rect().size
@@ -70,7 +71,7 @@ def start_game():
     pygame.mixer.music.set_volume(0.4)
     pygame.mixer.music.play(loops=-1)
 
-    global count1
+    global count1, wave
 
     while True:
         for event in pygame.event.get():
@@ -79,14 +80,14 @@ def start_game():
                 exit()
 
         if count1 == 0:
-            count1 = 15
-            for i in range(1, 16):
+            wave += 1
+            count1 += 5 * wave
+            for i in range(1, (count1 + 1)):
                 x = random.randint(200, 2000)
                 y = random.randint(200, 2000)
                 pos = (x, y)
-                if i > 10:
-                    i -= 10
-                vrag = Enemy(pos, f'enemy{i}.png')
+                pic = random.randint(1, 10)
+                vrag = Enemy(pos, f'enemy{pic}.png')
 
         screen.blit(background, (0, 0))
         screen.fill('black')
@@ -245,11 +246,12 @@ class Enemy(pygame.sprite.Sprite):
 
         self.direction = pygame.math.Vector2()
         self.velocity = pygame.math.Vector2()
-        self.speed = ENEMY_SPEED
+        self.speed = random.randint(5, 8)
+        if self.speed == 8:
+            self.health = 90
+        else:
+            self.health = random.randint(100, 150)
         self.angle = 1
-
-        self.health = random.randint(90, 150)
-
         self.position = pygame.math.Vector2(position)
 
     def hunt_player(self):
@@ -277,14 +279,13 @@ class Enemy(pygame.sprite.Sprite):
 
         for i in bullet_group:
             if self.rect.colliderect(i):
-                self.health -= 50
+                self.health -= 10
                 i.kill()
                 if self.health <= 0:
                     self.kill()
                     score += 1000
                     count += 1
                     count1 -= 1
-
 
 
 class Camera(pygame.sprite.Group):
