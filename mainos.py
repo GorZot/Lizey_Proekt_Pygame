@@ -7,7 +7,6 @@ import sqlite3
 from datetime import datetime
 import random
 
-
 pygame.init()
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))

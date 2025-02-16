@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4f85a53-01b9-4f2b-94e1-0d91985e654f" name="Changes" comment="Итоговый коммит(переработано в более менее играбельный вид)">
+    <list default="true" id="f4f85a53-01b9-4f2b-94e1-0d91985e654f" name="Changes" comment="Итоговый коммит(переработано в более менее играбельный вид) + рабочие монстры">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/abstract.db" beforeDir="false" afterPath="$PROJECT_DIR$/abstract.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainos.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739744141803</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Итоговый коммит(переработано в более менее играбельный вид) + рабочие монстры">
+      <option name="closed" value="true" />
+      <created>1739745240341</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1739745240341</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -260,6 +265,7 @@
     <MESSAGE value="рабочее сохранение в бд" />
     <MESSAGE value="Итоговый коммит" />
     <MESSAGE value="Итоговый коммит(переработано в более менее играбельный вид)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Итоговый коммит(переработано в более менее играбельный вид)" />
+    <MESSAGE value="Итоговый коммит(переработано в более менее играбельный вид) + рабочие монстры" />
+    <option name="LAST_COMMIT_MESSAGE" value="Итоговый коммит(переработано в более менее играбельный вид) + рабочие монстры" />
   </component>
 </project>
